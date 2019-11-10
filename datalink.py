@@ -47,8 +47,6 @@ def crcencode():
     m="10101"
     r="0000"
     bits+=r
-    div = 0
-    divd = 0
     div = bit_to_int(bits)
 
     divd = bit_to_int(m)
@@ -68,4 +66,4 @@ def crcdecode(msg):
 
 
  
-crcdecode(crcincode())
+crcdecode(crcencode())
