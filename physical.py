@@ -6,13 +6,13 @@ packet_size = 8
 def manchester_encoding(s):
     temp_bitarray = bitarray()
     for i  in range(len(s)):
-        if( s[i]==0 ):
+        if( s[i]=='0' ):
             temp_bitarray.append(False)
             temp_bitarray.append(True)
-        if(s[i]==1):
+        if(s[i]=='1'):
             temp_bitarray.append(True)
             temp_bitarray.append(False)
-    
+    #print(temp_bitarray)
     return temp_bitarray
 
 def manchester_decoding(temp):
@@ -26,3 +26,10 @@ def manchester_decoding(temp):
         i = i+2
    
     return temp_bitarray
+
+# a = bitarray()
+# a.extend([False,True,True,True,True,False,False,True])
+# print(a)
+# c = manchester_encoding(a)
+# print(c)
+# b = manchester_decoding(c)

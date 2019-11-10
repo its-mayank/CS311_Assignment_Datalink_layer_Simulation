@@ -44,9 +44,3 @@ print(datalink_encoded_output)
 physical_encoded_output = manchester_encoding(datalink_encoded_output)
 
 sendData(physical_encoded_output)
-
-# print(physical_encoded_output)
-# physical_decoded_output = manchester_decoding(physical_encoded_output)
-
-# print(physical_decoded_output)
-# datalink_decoded_output = crcdecode(bitarray_to_string(physical_decoded_output))

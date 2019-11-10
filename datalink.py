@@ -1,6 +1,6 @@
 import numpy as np
 from bitarray import bitarray
-
+from physical import *
 
 def xor(a, b): 
     result = [] 
@@ -42,8 +42,8 @@ def bit_to_int(x):
     return m
 
 
-def crcencode():
-    bits="1"
+def crcencode(bits):
+    
     m="10101"
     r="0000"
     bits+=r
@@ -54,16 +54,21 @@ def crcencode():
     rem=modulus_2_division(bits,m)
     reminder=bit_to_int(rem)
     msg=bit_to_int(bits)
-    return np.binary_repr(msg+reminder+1)
+    return np.binary_repr(msg+reminder)
 
 
 def crcdecode(msg):
     if int(modulus_2_division(msg,"10101"))==0:
-        print("NO ERROR\nMessage is",msg)
+        print("NO ERROR\nMessage is")
+        message="0"
+        for i in range(len(msg)-4):
+            message+=msg[i]
+        print(bitarray(message).tobytes().decode('utf-8')) 
+        return 0   
     else:
         print("ERROR DETECTED")
+        return 1
     
 
 
- 
-crcdecode(crcencode())
+    
