@@ -35,8 +35,6 @@ msg=input("Enter the message\n")
 message_to_bits.frombytes(msg.encode('utf-8'))
 #print(bitarray_to_string(message_to_bits))
 #print(message_to_bits.tobytes().decode('utf-8'))
-ip="172.17.0.0"
-host="1947"
 print(message_to_bits)
 datalink_encoded_output = crcencode(bitarray_to_string(message_to_bits))
 
