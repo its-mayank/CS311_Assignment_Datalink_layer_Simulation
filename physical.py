@@ -26,10 +26,3 @@ def manchester_decoding(temp):
         i = i+2
    
     return temp_bitarray
-
-# a = bitarray()
-# a.extend([False,True,True,True,True,False,False,True])
-# print(a)
-# c = manchester_encoding(a)
-# print(c)
-# b = manchester_decoding(c)

@@ -36,7 +36,6 @@ def sendData(s_input):
     PORT = input()
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, int(PORT)))
-        print(s_input)
         s.sendall(bitarray_to_string(s_input).encode('utf-8'))
     # print('Received', repr(data))
 
