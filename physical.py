@@ -12,7 +12,6 @@ def manchester_encoding(s):
         if(s[i]=='1'):
             temp_bitarray.append(True)
             temp_bitarray.append(False)
-    #print(temp_bitarray)
     return temp_bitarray
 
 def manchester_decoding(temp):
@@ -26,6 +25,11 @@ def manchester_decoding(temp):
         i = i+2
    
     return temp_bitarray
+
+
+
+# Code for the testing of the individual utility functions written in the file!
+
 
 # a = bitarray()
 # a.extend([False,True,True,True,True,False,False,True])

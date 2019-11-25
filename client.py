@@ -22,40 +22,48 @@ def sendData(s_input):
     # print('Received', repr(data))
 
 
-message_to_bits = bitarray()
 
-
-msg = input("Enter the message\n")
-message_to_bits.frombytes(msg.encode('utf-8'))
-#print(bitarray_to_string(message_to_bits))
-#print(message_to_bits.tobytes().decode('utf-8'))
-print(message_to_bits)
 print("Enter the Ip Address of the host you want to connect!")
 HOST = input()
 print("Enter the Port number of the connecting PC")
 PORT = input()
 
-datalink_encoded_output = crcencode(bitarray_to_string(message_to_bits))
-print("=============================================================================")
-print("Output After CRC encoding is ::\n ",datalink_encoded_output)
-print("=============================================================================")
-#print("LEngth of message before header is\n",len(datalink_encoded_output))
+while True:
+    msg = input("Enter the message\n")
+    print("mssg is ",msg)
+    message_to_bits = bitarray()
+    message_to_bits.frombytes(msg.encode('utf-8'))
+    datalink_encoded_output=None
+    datalink_encoded_output = crcencode(bitarray_to_string(message_to_bits))
+    print("=============================================================================")
+    #print("LEngth of message before header is\n",len(datalink_encoded_output))
+    print("Output After CRC encoding is ::\n ",datalink_encoded_output)
+    print("=============================================================================")
+    
+    header_added_output=None
+    header_added_output = add_header(datalink_encoded_output,PORT,HOST)
 
-header_added_output = add_header(datalink_encoded_output,PORT,HOST)
+    # print("Length of message after header is\n",len(header_added_output))
+    # print("Output after adding header is ::\n ",header_added_output)
+    print("=============================================================================")
+    
 
-print("Output after adding header is ::\n ",header_added_output)
-print("=============================================================================")
-#print("Length of message after header is\n",len(header_added_output))
-
-#print(datalink_encoded_output)
-physical_encoded_output = manchester_encoding(header_added_output)
-print("Output After Manchester Encoding is ::\n ",physical_encoded_output)
-print("=============================================================================")
-
-sendData(physical_encoded_output)
-
-# print(physical_encoded_output)
-# physical_decoded_output = manchester_decoding(physical_encoded_output)
-
-# print(physical_decoded_output)
-# datalink_decoded_output = crcdecode(bitarray_to_string(physical_decoded_output))
+    print(datalink_encoded_output)
+    physical_encoded_output=None
+    
+    physical_encoded_output = manchester_encoding(header_added_output)
+    print("Output After Manchester Encoding is ::\n ",physical_encoded_output)
+    print("=============================================================================")
+    
+    i = 0
+    print("Packets are:::::")
+    num_packets = (int(len(physical_encoded_output)/16)-1)*16
+    flag = '01111110'
+    while i <= num_packets:
+        temp_string = physical_encoded_output[i:i+16]
+        print(flag+bitarray_to_string(temp_string)+flag)
+        i = i + 16
+        
+    msg = None
+    
+    sendData(physical_encoded_output)

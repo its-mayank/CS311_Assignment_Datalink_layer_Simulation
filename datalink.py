@@ -58,9 +58,10 @@ def add_header(msg,port,ip):
     
    
     port_to_bits.frombytes(port.encode('utf-8'))
-   # print(len(port_to_bits))
+    # print(len(port_to_bits))
     ip_to_bits.frombytes(ip.encode('utf-8'))
     #print(len(ip_to_bits))
+    final_mssg=None
     final_mssg=bitarray_to_string(ip_to_bits)+bitarray_to_string(port_to_bits)+msg
     #print(len(final_mssg))
 
@@ -98,7 +99,7 @@ def crcencode(bits):
 def crcdecode(msg):
     if int(modulus_2_division(msg,"10101"))==0:
         print("=============================================================================")
-        print("No Error found\nMessage is\n")
+        print("No Error found\nMessage is:::::::")
         message="0"
         for i in range(len(msg)-4):
             message+=msg[i]
@@ -107,7 +108,6 @@ def crcdecode(msg):
     else:
         print("=============================================================================")
         print("Error Detected! Please correct it.\n")
-        #print(msg)
         return 1
     
 
