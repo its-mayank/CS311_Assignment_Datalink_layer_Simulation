@@ -1,8 +1,5 @@
 from bitarray import *
-
-packet_size = 8
-
-
+# Utility function to encode the given message according to the manchester encoding.
 def manchester_encoding(s):
     temp_bitarray = bitarray()
     for i  in range(len(s)):
@@ -14,6 +11,7 @@ def manchester_encoding(s):
             temp_bitarray.append(False)
     return temp_bitarray
 
+# Utility function to decode the given message according to the manchester encoding.
 def manchester_decoding(temp):
     temp_bitarray = bitarray()
     i=0

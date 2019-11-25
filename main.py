@@ -1,3 +1,6 @@
+# Code that is mostly written for the test of Coupling and Cohesion among the files and functions.
+
+
 from bitarray import *
 from datalink import *
 from physical import *

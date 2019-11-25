@@ -3,7 +3,7 @@ from datalink import *
 from physical import *
 import socket
 
-
+# Utility function to convert the standard bitarray into string
 def bitarray_to_string(x):
     s = ""
     for i in x:
@@ -14,7 +14,7 @@ def bitarray_to_string(x):
 
     return s
 
-
+# Function which sends the input message to the Server
 def sendData(s_input):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, int(PORT)))
